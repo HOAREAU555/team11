@@ -1,0 +1,261 @@
+swagger: '2.0'
+info:
+  description: "Voltron"
+  version: 1.0.0
+  title: Voltron
+host: localhost:8084
+schemes:
+  - http
+  - https
+paths:          
+  #token        
+  /token/user/generateToken:
+    post:
+      tags:
+        - Token
+      summary: Obtenir le token
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/token"
+            
+  /token/user/validateToken:
+    get:
+      tags:
+        - Token
+      summary: Verifier son token
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: gfg_token_header_key
+          type: string
+          description: Token generate
+      responses:
+        200:
+          description: "successful operation"
+          schema:
+            $ref: "#/definitions/tokenVerif"
+        401:
+          description: "JsonWebTokenError"
+  /user/register:
+    get:
+      tags:
+        - Users
+      summary: Register
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Register an user
+          required: true
+          schema:
+            $ref: '#/definitions/Register'
+      responses:
+        '201':
+          description: Created
+  /user/login:
+    post:
+      tags:
+        - Users
+      summary: Login
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: body
+          name: body
+          description: Login
+          required: true
+          schema:
+            $ref: '#/definitions/Login'
+        - in: header
+          name: response
+          type: string
+          description: Token must be put in Bearer Header and it have role and id in it
+          required: true
+          schema:
+            $ref: '#/definitions/token'
+      responses:
+        '200':
+          description: OK
+        '400':
+          description: Email and password doesnt match        
+  /user/logout:
+    post:
+      tags:
+        - Users
+      summary: Logout
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Access Token
+          type: string
+          description: Bearer Authorization
+          required: true
+      responses:
+        '200':
+          description: Logout
+  /user/profile:
+    get:
+      tags:
+        - Users
+      summary: Retrieving a user
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Access Token
+          description: Bearer Authorization
+          type: string
+          required: true
+        - in: body
+          name: body
+          description: User Informations
+          required: true
+          schema:
+            $ref: '#/definitions/Register'
+      responses:
+        '200':
+          description: OK
+  /user/profile/update:
+    put:
+      tags:
+        - Users
+      summary: Update an user
+      consumes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Access Token
+          type: string
+          description: Bearer Authorization
+        - in: body
+          name: body
+          description: ''
+          required: true
+          schema:
+            $ref: '#/definitions/Update'
+      responses:
+        '200':
+          description: Updated
+  /user/changepass:
+    put:
+      tags:
+        - Users
+      summary: Change a password of user
+      consmes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Access Token
+          type: string
+          description: Bearer Authorization
+          required: true
+        - in: body
+          name: body
+          description: User Informations
+          required: true
+          schema:
+            $ref: '#/definitions/Password'
+      responses:
+        '200':
+          description: Changed  
+  /user/all:
+    get:
+      tags:
+        - Users
+      summary: Get all users
+      consmes:
+        - application/json
+      produces:
+        - application/json
+      parameters:
+        - in: header
+          name: Access Token
+          type: string
+          description: Bearer Authorization
+          required: true
+      responses:
+        '200':
+          description: Get 
+definitions:
+  token:
+    type: object
+    properties: 
+      token: 
+        type: string 
+        example: "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0aW1lIjoiRnJpIEFwciAyMiAyMDIyIDExOjQ0OjE2IEdNVCswMjAwIChoZXVyZSBk4oCZw6l0w6kgZOKAmUV1cm9wZSBjZW50cmFsZSkiLCJ1c2VySWQiOjEyLCJpYXQiOjE2NTA2MjA2NTZ9.8d7ARUglsSX1bCPO9crh99RvYLuXAhGxeMM8WvJu0YA"
+  tokenVerif:
+    type: object
+    properties: 
+      succes: 
+        type: string 
+        example: "Pas de message middlewares qui passe a la condition suivante"
+  Register:
+    type: object
+    properties:
+      id:
+        type: string
+      firsname:
+        type: string
+      lastname:
+        type: string
+      email:
+        type: string
+      password:
+        type: string
+    xml:
+      name: Register
+  Login:
+    type: object
+    properties:
+      email:
+        type: string
+      password:
+        type: string
+  Password:
+    type: object
+    properties:
+      id:
+        type: string
+      password:
+        type: string
+  Update:
+    type: object
+    properties:
+      id:
+        type: string
+      firstname:
+        type: string
+      lastname:
+        type: string
+  
+        
+
+
+        
+        
+        
+       
+        

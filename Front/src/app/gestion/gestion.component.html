@@ -1,0 +1,15 @@
+<ion-content [@fadeInOnEnter] >
+    <div class="gestion-card-div">
+      <ion-card [@slideInUpOnEnter]>
+        <ion-card-header style="display: flex; justify-content: center; align-items: center;">Création d'un nouveau capteur</ion-card-header>
+        <ion-card-content >
+          <ion-row style="display: flex; justify-content: center; align-items: center;">
+              <ion-input type="text" class="ion-text-center" style="font-family: 'Poppins', sans-serif; max-width: 100%; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;" placeholder="Entrez les nom du capteur" name="capteur" ngModel></ion-input>
+          </ion-row>
+          <ion-row style="display: flex; justify-content: center; align-items: center;">
+            <ion-button style="font-family: 'Poppins', sans-serif; width: 100%; --background: #0071ce;" type="submit">Ajouter le capteur</ion-button>
+          </ion-row>     
+        </ion-card-content>
+      </ion-card>
+    </div>
+  </ion-content>

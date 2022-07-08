@@ -1,0 +1,29 @@
+  <ion-content [@fadeInOnEnter] >
+  <div class="login-card-div">
+    <ion-card [@slideInUpOnEnter]>
+      <ion-card-header style="display: flex; justify-content: center; align-items: center;">Login</ion-card-header>
+      <ion-card-content >
+      <form #form="ngForm" (submit)="submit(form)" >
+        <ion-row style="display: flex; justify-content: center; align-items: center;">
+          <ion-input [ngStyle]="{'border': checkEmailStyle ? '1px green solid' : '1px red solid'}" (keyup)="checkEmail($event.target.value)" type="mail" class="ion-text-center" style="font-family: 'Poppins', sans-serif; max-width: 100%; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;" placeholder="Entrez votre adresse e-mail" name="email" ngModel></ion-input>
+        </ion-row>
+        <p *ngIf="checkemail == false && countmail > 1" style=" width: 300px;text-align: center;font-size: smaller;color: red;">Email incorrect</p>
+        <p *ngIf="checkemail == true && countmail > 1" style=" width: 300px;text-align: center;font-size: smaller;color: green;">Email correct</p>
+        <ion-row style="display: flex; justify-content: center; align-items: center;">
+            <ion-input [ngStyle]="{'border': checkpasswordStyle ? '1px green solid' : '1px red solid'}" (keyup)="checkStrength($event.target.value)" type="password" class="ion-text-center" style="font-family: 'Poppins', sans-serif; max-width: 100%; box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;" placeholder="Entrez votre mot de passe" name="password" ngModel></ion-input>
+        </ion-row>
+        <p *ngIf="checkpassword == false && countpassword > 1" style=" width: 300px;text-align: center;font-size: smaller;color: red;">Votre mot de passe doit conteniur au moins 1 majuscule , 1 chiffre , 1 caractere special et etre superieur à 10</p>
+        <p *ngIf="checkpassword == true && countpassword > 1" style=" width: 300px;text-align: center;font-size: smaller;color: green;">Mot de passe correct</p>
+
+        <ion-row style="display: flex; justify-content: center; align-items: center;">
+          <ion-button style="font-family: 'Poppins', sans-serif; width: 100%; --background: #0071ce;" type="submit">Login</ion-button>
+        </ion-row>
+      </form>        
+      </ion-card-content>
+    </ion-card>
+  </div>
+</ion-content>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Hubballi&family=Poppins:wght@300&display=swap');
+</style>

@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "EpicRoadTrip",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}

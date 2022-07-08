@@ -1,0 +1,7 @@
+{
+  "name": "EpicRoadTrip",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
