@@ -13,7 +13,7 @@ export class ApiService {
   constructor() { }
 
   env = environment;
-  UrlDomain = "http://localhost:8084"//this.env.hostname;
+  UrlDomain = "http://ansible_team11_1:8084"//this.env.hostname;
 
   async getUser(token:string)
   {
@@ -23,14 +23,14 @@ export class ApiService {
         gfg_token_header_key: token,
       }
     };
-    return axios.get(`http://localhost:8084/user/profile`,config).then(res=>{
+    return axios.get(`http://ansible_team11_1:8084/user/profile`,config).then(res=>{
       return res;
     });
   }
   async getAllUser()
   {
     var token = localStorage.getItem("token")
-    return axios.get(`http://localhost:8084/user/all`,
+    return axios.get(`http://ansible_team11_1:8084/user/all`,
     {headers:
       {'gfg_token_header_key': `${token}`}
     })
@@ -41,7 +41,7 @@ export class ApiService {
   }
   GetToken()
   {
-    return axios.post(`http://localhost:8084/token/user/generateToken`)
+    return axios.post(`http://ansible_team11_1:8084/token/user/generateToken`)
     .then(res=>{
       // handle success
       return res.data;
@@ -54,7 +54,7 @@ export class ApiService {
   {
     const token = token1
 
-    return axios.get(`http://localhost:8084/token/user/validateToken`,
+    return axios.get(`http://ansible_team11_1:8084/token/user/validateToken`,
     {headers:
       {'gfg_token_header_key': `${token}`}
     })
@@ -66,7 +66,7 @@ export class ApiService {
   login(user : string,password:string)
   {
     
-    return axios.post(`http://localhost:8084/user/login`,
+    return axios.post(`http://ansible_team11_1:8084/user/login`,
     
       {'email': `${user}`,
       'password': password
@@ -80,7 +80,7 @@ export class ApiService {
   }
   register(user : string,password:string,firstname,lastname)
   {
-    return axios.post(`http://localhost:8084/user/register`,
+    return axios.post(`http://ansible_team11_1:8084/user/register`,
     
       {'email': `${user}`,
       'password': password,
@@ -100,7 +100,7 @@ export class ApiService {
     
     var token = localStorage.getItem("token")
 
-    return axios.put(`http://localhost:8084/user/profile/update`,
+    return axios.put(`http://ansible_team11_1:8084/user/profile/update`,
     {
       'id': id,
       "firstname":firstname,
@@ -120,7 +120,7 @@ export class ApiService {
     
     var token = localStorage.getItem("token")
 
-    return axios.put(`http://localhost:8084/user/changpass`,
+    return axios.put(`http://ansible_team11_1:8084/user/changpass`,
     {
       'id': id,
       'password': password,
@@ -140,7 +140,7 @@ export class ApiService {
   {
     var token = localStorage.getItem("token")
 
-    return axios.get(`http://localhost:8084/capteur/${table}/${ordre}`,
+    return axios.get(`http://ansible_team11_1:8084/capteur/${table}/${ordre}`,
     {headers:
       {'gfg_token_header_key': `${token}`}
     })

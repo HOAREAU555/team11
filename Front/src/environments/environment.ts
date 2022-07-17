@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  hostname : "http://localhost:8083",
+  hostname : "http://ansible_team11_1:8083",
 };
 
 /*
